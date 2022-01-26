@@ -1,0 +1,31 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Resources\Pets\Owners;
+
+class OwnersController extends Controller
+{
+    private $ownersObj;
+
+    public function __construct(Owners $ownersObj)
+    {
+       $this->ownersObj = $ownersObj;
+    }
+
+    /**
+     * Display a listing of theowner.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+       $owners = $this->ownersObj->handler();
+
+       if (false === $owners) {
+           return response()->json("data source error", 500);
+       }
+    }
+
+}
