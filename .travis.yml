@@ -1,0 +1,29 @@
+# Travis file for Continuous integration.
+#
+# Version: 2022-01-26 V1
+# Author: Wang Zhong Hao <mecom@163.com>
+#  
+#
+#
+
+dist: xenial
+sudo: true
+language: php 
+php:
+  - '7.4'
+
+env:
+  global:
+    - LANG=en_US.UTF-8
+    - LC_ALL=en_US.UTF-8
+
+git:
+  depth: 10o
+
+script:
+  - echo $(php -m)
+  - vendor/bin/phpcs
+  - vendor/bin/phpunit
+
+after_failure:
+    - cat storage/logs/laravel.log
