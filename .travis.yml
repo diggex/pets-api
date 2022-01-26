@@ -18,7 +18,11 @@ env:
     - LC_ALL=en_US.UTF-8
 
 git:
-  depth: 10o
+  depth: 10
+
+install:
+   ## Installing composer dependenc
+    - travis_retry composer install --prefer-dist --no-interaction
 
 script:
   - echo $(php -m)
